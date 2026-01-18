@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project Data Science - We Revolution Business and Industry with AI">
+    <title>Project Data Science - PT. Berkat Business Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-400: #4ade80;
+            --green-500: #22c55e;
+            --green-600: #16a34a;
+            --cyan-400: #22d3ee;
+            --cyan-500: #06b6d4;
+            --cyan-600: #0891b2;
+            --teal-500: #14b8a6;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --gray-100: #f3f4f6;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--green-400), var(--cyan-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green-400);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--slate-900) 0%, var(--slate-800) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            top: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            bottom: 20%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--green-400), var(--cyan-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--green-500), var(--cyan-500));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--green-500);
+            color: var(--green-400);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--green-500);
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--green-600), var(--cyan-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--gray-100);
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--green-500), var(--cyan-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: var(--gray-100);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card.green:hover { border-color: var(--green-500); }
+        .service-card.cyan:hover { border-color: var(--cyan-500); }
+        .service-card.teal:hover { border-color: var(--teal-500); }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card.green .service-icon { background: rgba(34, 197, 94, 0.1); }
+        .service-card.cyan .service-icon { background: rgba(6, 182, 212, 0.1); }
+        .service-card.teal .service-icon { background: rgba(20, 184, 166, 0.1); }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--gray-800);
+        }
+
+        .service-card p {
+            color: var(--gray-600);
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--green-500);
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--slate-900);
+            border-radius: 24px;
+            padding: 30px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+
+        .project-category {
+            font-size: 0.8rem;
+            color: var(--cyan-400);
+            font-weight: 500;
+        }
+
+        .project-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-live { background: var(--green-500); }
+        .status-beta { background: var(--cyan-500); }
+        .status-dev { background: #f97316; }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--gray-400);
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            padding: 6px 14px;
+            background: var(--slate-800);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray-300);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--gray-100);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-stars {
+            color: #facc15;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            color: var(--gray-600);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+        }
+
+        .avatar-green { background: linear-gradient(135deg, var(--green-500), var(--cyan-500)); }
+        .avatar-cyan { background: linear-gradient(135deg, var(--cyan-500), var(--teal-500)); }
+        .avatar-teal { background: linear-gradient(135deg, var(--teal-500), var(--green-500)); }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--slate-900);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            color: var(--gray-400);
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray-300);
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--slate-800);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: var(--slate-800);
+            padding: 40px;
+            border-radius: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--gray-300);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--slate-700);
+            border: 1px solid var(--slate-700);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green-500);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--slate-900);
+            padding: 40px 0;
+            border-top: 1px solid var(--slate-800);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--green-400), var(--cyan-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--slate-800);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--green-500);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">PROJECT DATA SCIENCE</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Driving Digital Transformation</h1>
+                <p>Revolutionizing Business with AI and Data Science. We help enterprises integrate cutting-edge AI solutions for operational excellence.</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="#services" class="btn btn-primary">Explore Services →</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About <span class="gradient-text">Us</span></h2>
+                <p>We revolutionize business and industry with AI-powered solutions, delivering measurable results and enterprise-grade reliability.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span class="gradient-text">Services</span></h2>
+                <p>Comprehensive AI and data science solutions tailored for your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card green">
+                    <div class="service-icon">🤖</div>
+                    <h3>Enterprise AI Integration</h3>
+                    <p>Transform your business operations with intelligent automation and AI-powered insights.</p>
+                    <ul class="service-features">
+                        <li>Conversational AI & Chatbots</li>
+                        <li>Intelligent Process Automation</li>
+                        <li>Advanced Analytics & Insights</li>
+                        <li>Machine Learning Solutions</li>
+                    </ul>
+                </div>
+                <div class="service-card cyan">
+                    <div class="service-icon">📚</div>
+                    <h3>Professional Development</h3>
+                    <p>Comprehensive training programs to upskill your team in AI and modern technologies.</p>
+                    <ul class="service-features">
+                        <li>AI Engineering Bootcamp</li>
+                        <li>Software Development Training</li>
+                        <li>Cloud Architecture Certification</li>
+                        <li>Data Science Programs</li>
+                    </ul>
+                </div>
+                <div class="service-card teal">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Modernize your infrastructure with secure, scalable cloud solutions.</p>
+                    <ul class="service-features">
+                        <li>Google Workspace Migration</li>
+                        <li>Cloud Computing Architecture</li>
+                        <li>Secure Infrastructure Setup</li>
+                        <li>Performance Optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured <span class="gradient-text">Projects</span></h2>
+                <p>Explore our portfolio of successful AI implementations and solutions</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-category">AI & Machine Learning</span>
+                        <span class="project-status status-live">Live</span>
+                    </div>
+                    <h3>CETIF.AI</h3>
+                    <p>Enterprise-grade conversational AI platform using LLMs for Google Cloud support and automation.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">NLP</span>
+                        <span class="project-tag">LangChain</span>
+                        <span class="project-tag">Realtime</span>
+                        <span class="project-tag">Cloud</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-category">AI Analysis</span>
+                        <span class="project-status status-live">Live</span>
+                    </div>
+                    <h3>Detazo - AI Agent Analysis</h3>
+                    <p>Analytics platform for executive intelligence, delivering actionable insights and data-driven decisions.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Analytics</span>
+                        <span class="project-tag">ML</span>
+                        <span class="project-tag">Insights</span>
+                        <span class="project-tag">Dashboard</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-category">AI Partner</span>
+                        <span class="project-status status-beta">Beta</span>
+                    </div>
+                    <h3>Naisu.ai - AI Partner Chatbot</h3>
+                    <p>Enterprise conversational AI for seamless customer engagement and support automation.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Chatbot</span>
+                        <span class="project-tag">NLP</span>
+                        <span class="project-tag">Support</span>
+                        <span class="project-tag">Partner</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-category">HR Tech</span>
+                        <span class="project-status status-live">Live</span>
+                    </div>
+                    <h3>Talenify - Smart HR Filter</h3>
+                    <p>NLP and ML-powered talent acquisition platform for intelligent candidate screening and ranking.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">AI Filter</span>
+                        <span class="project-tag">OpenAI</span>
+                        <span class="project-tag">HR Tech</span>
+                        <span class="project-tag">Ranking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our <span class="gradient-text">Clients Say</span></h2>
+                <p>Real feedback from businesses we've helped transform</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Program AI Engineering sangat komprehensif! Materinya up-to-date dan langsung bisa diaplikasikan di pekerjaan saya."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-green">A</div>
+                        <div class="author-info">
+                            <h4>Adit</h4>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Tim Project Data Science membantu kami mengimplementasi AI chatbot yang meningkatkan efisiensi customer service 3x lipat."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-cyan">D</div>
+                        <div class="author-info">
+                            <h4>Dita</h4>
+                            <p>Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Pelatihan yang diberikan sangat praktis dan mentor-mentornya berpengalaman. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar avatar-teal">F</div>
+                        <div class="author-info">
+                            <h4>Fifi</h4>
+                            <p>Data Analyst</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Let's Work <span class="gradient-text">Together</span></h2>
+                    <p>Ready to transform your business with AI? Get in touch with our team and let's discuss how we can help you achieve your goals.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <strong>Email</strong><br>
+                                admin@dataprojects.net
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <strong>WhatsApp</strong><br>
+                                +62 812-7638-0841
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Location</strong><br>
+                                Binjai, Sumatera Utara, Indonesia
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Service Interested</label>
+                            <select id="service">
+                                <option value="">Select a service</option>
+                                <option value="ai-integration">Enterprise AI Integration</option>
+                                <option value="training">Professional Development</option>
+                                <option value="cloud">Cloud Infrastructure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea id="message" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send via WhatsApp →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Data Projects Net</div>
+                <p class="footer-text">© 2024 PT. Berkat Business Group. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/data-projects-net/" target="_blank" class="social-link" title="LinkedIn">in</a>
+                    <a href="https://www.instagram.com/project_datascience.ai/" target="_blank" class="social-link" title="Instagram">ig</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Contact form WhatsApp integration
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            const serviceNames = {
+                'ai-integration': 'Enterprise AI Integration',
+                'training': 'Professional Development',
+                'cloud': 'Cloud Infrastructure'
+            };
+
+            const whatsappMessage = `Halo Project Data Science!
+
+Nama: ${firstName} ${lastName}
+Email: ${email}
+Service: ${serviceNames[service] || 'General Inquiry'}
+
+Pesan:
+${message}`;
+
+            const whatsappUrl = `https://wa.me/6281276380841?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Mobile menu toggle (basic functionality)
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(15, 23, 42, 0.98)';
+                navLinks.style.padding = '20px';
+            }
+        });
+    </script>
+</body>
+</html>
